@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bota.dao.MfDao">
+	<select id="selectallmf" resultType="com.bota.bean.mf">
+		select * from mfmanage
+	</select>
+	<select id="selectlimitmf" parameterType="com.bota.bean.page" resultType="com.bota.bean.mf">
+		select * from mfmanage limit #{pageNum} , #{pageSize}
+	</select>
+	<select id="selectmf" parameterType="com.bota.bean.mf" resultType="com.bota.bean.mf">
+		select * from mfmanage where mnumber=#{mnumber}
+	</select>
+	<select id="sousuomfname" parameterType="com.bota.bean.mf" resultType="com.bota.bean.mf">	
+		select * from mfmanage where mname like "%"#{mname}"%"
+	</select>
+	<insert id="addmf" parameterType="com.bota.bean.mf">
+		insert into mfmanage(mnumber,mname,model,unit,number,Remarks)
+		values(#{mnumber},#{mname},#{model},#{unit},#{number},#{Remarks})
+	</insert>
+	<update id="updatemf" parameterType="com.bota.bean.mf">
+		update mfmanage set mname=#{mname},model=#{model},unit=#{unit},number=#{number},Remarks=#{Remarks} where mnumber=#{mnumber}
+	</update>
+	<delete id="deletemf" parameterType="com.bota.bean.mf">
+		delete mfmanage where mname=#{mname}
+	</delete>
+</mapper>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bota.dao.PfDao">
+	<insert id="addpfdo" parameterType="com.bota.bean.pfmanage">
+		insert into pfmanage(usernumber,username,sex,birthday,idnumber,jg,hometown,phone,remarks)
+		values (#{usernumber},#{username},#{sex},#{birthday},#{idnumber},#{jg},#{hometown},#{phone},#{remarks})
+	</insert>
+	<select id="selectallpf" resultType="com.bota.bean.pfmanage">
+		select * from pfmanage;
+	</select>
+	<select id="selectfypf" parameterType="com.bota.bean.page" resultType="com.bota.bean.pfmanage">
+		select * from pfmanage limit #{pageNum} , #{pageSize}
+	</select>
+	<select id="selectpfxq" parameterType="com.bota.bean.pfmanage" resultType="com.bota.bean.pfmanage">
+		select * from pfmanage where usernumber=#{usernumber};
+	</select>
+	<select id="sousuopfname" parameterType="com.bota.bean.pfmanage" resultType="com.bota.bean.pfmanage">
+		select * from pfmanage where username like "%"#{username}"%"
+	</select>
+	<update id="updatepf" parameterType="com.bota.bean.pfmanage">
+		update pfmanage set username=#{username},sex=#{sex},birthday=#{birthday},idnumber=#{idnumber},jg=#{jg},hometown=#{hometown},phone=#{phone},remarks=#{remarks} where usernumber=#{usernumber}
+	</update>
+	<delete id="deletpfau" parameterType="com.bota.bean.userauthority">
+		delete from userauthority where usernumber=#{usernumber} and authorityid=#{authorityid}
+	</delete>
+	<delete id="deletepf" parameterType="com.bota.bean.pfmanage">
+		delete from pfmanage where usernumber=#{usernumber}
+	</delete>
+</mapper>

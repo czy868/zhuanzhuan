@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bota.dao.AuthorityDao">
+	<insert id="addAuthority" parameterType="com.bota.bean.authority">
+		insert into authority(authorityid,authorityname,authorityfeatures)
+		values (#{authorityid},#{authorityname},#{authorityfeatures})
+	</insert>
+	<select id="selectAuthority" resultType="com.bota.bean.authority" parameterType="com.bota.bean.page">
+		select * from authority limit #{pageNum} , #{pageSize}
+	</select>
+	<select id="selectallAuthority" resultType="com.bota.bean.authority">
+		select * from authority
+	</select>
+	<select id="selectpfauthority" resultType="com.bota.bean.userauthority">
+		select * from userauthority where usernumber=#{usernumber}
+	</select>
+	<select id="selectauthorityid" parameterType="com.bota.bean.authority" resultType="com.bota.bean.authority">
+		select * from authority where authorityfeatures=#{authorityfeatures}
+	</select>
+	<insert id="addpfauthority" parameterType="com.bota.bean.userauthority">
+		insert into userauthority(id,usernumber,authorityid,authority)
+		values (null,#{usernumber},#{authorityid},#{authority})
+	</insert>
+</mapper>

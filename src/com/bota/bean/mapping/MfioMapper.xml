@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bota.dao.MfioDao">
+	<select id="selectmfkc" parameterType="com.bota.bean.mf" resultType="com.bota.bean.mf">
+		select * from mfmanage where mnumber=#{mnumber}
+	</select>
+	<select id="selectinandout" resultType="com.bota.bean.minoutfile">
+		select * from minoutfile
+	</select>
+	<select id="selectlimitinandou" parameterType="com.bota.bean.page" resultType="com.bota.bean.minoutfile">
+		select * from minoutfile limit #{pageNum} , #{pageSize}
+	</select>
+	<update id="updatemfkc" parameterType="com.bota.bean.mf">
+		update mfmanage set number=#{number} where mnumber=#{mnumber}
+	</update>
+	<insert id="addmfio" parameterType="com.bota.bean.minoutfile">
+		insert into minoutfile(dnumber,date,usernumber,mnumber,mname,shuliang,stauts)
+		values(#{dnumber},#{date},#{usernumber},#{mnumber},#{mname},#{shuliang},#{stauts})
+	</insert>
+</mapper>
